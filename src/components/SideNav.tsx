@@ -1,0 +1,126 @@
+import { Box, Typography, Avatar } from '@mui/material';
+
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined';
+import SourceOutlinedIcon from '@mui/icons-material/SourceOutlined';
+import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import SettingsOutminedIcon from '@mui/icons-material/SettingsOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import { useProSidebar } from 'react-pro-sidebar';
+import { Link, useLocation } from 'react-router-dom';
+
+export default function SideNav() {
+
+  const { collapsed } = useProSidebar()
+  const location = useLocation()
+
+  return (
+    <Sidebar
+      style={{
+        height: '100%',
+        top: 'auto'
+      }}
+      breakPoint='md'
+      backgroundColor='rgba(239, 236, 236, 1)'
+    >
+
+      <Box sx={styles.avatarContainer}>
+        <Avatar sx={styles.avatar} alt='' src='src/assets/default-avatar.png' />
+        { !collapsed ? <Typography variant="body2" sx={styles.name}>Fatima Benzaoui</Typography> : null }
+        { !collapsed ? <Typography variant="overline" sx={styles.role}>Administrator</Typography> : null }
+      </Box>
+
+      <Menu
+        menuItemStyles={{
+          button: ({ active }) => {
+            return {
+              backgroundColor: active ? '#9C27B0' : 'transparent',
+              color: active ? '#FFF' : '#000'
+            }
+          }
+        }}>
+        <MenuItem 
+          active={location.pathname === '/dashboard'} 
+          component={<Link to="/dashboard"/>} 
+          icon={<DashboardOutlinedIcon/>}
+        >
+          <Typography variant="body2">Dashboard</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/analytics'}  
+          component={<Link to="/analytics"/>} 
+          icon={<AnalyticsOutlinedIcon />}
+        >
+          <Typography variant="body2">Analytics</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/events'} 
+          component={<Link to="/events"/>}
+          icon={<CalendarMonthOutlinedIcon />}
+        >
+          <Typography variant="body2">Events</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/users'} 
+          component={<Link to="/users"/>} 
+          icon={<GroupOutlinedIcon />}
+        >
+          <Typography variant="body2">Users</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/schools'} 
+          component={<Link to="/schools"/>} 
+          icon={<SchoolOutlinedIcon />}
+        >
+          <Typography variant="body2">Schools</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/associations'} 
+          component={<Link to="/associations"/>} 
+          icon={<GroupOutlinedIcon />}
+        >
+          <Typography variant="body2">Associations</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/students'} 
+          component={<Link to="/students"/>} 
+          icon={<GroupOutlinedIcon />}
+        >
+          <Typography variant="body2">Students</Typography>
+        </MenuItem>
+        <MenuItem 
+          active={location.pathname === '/documentation'} 
+          component={<Link to="/documentation"/>}
+          icon={<SourceOutlinedIcon />}
+        >
+          <Typography variant="body2">Documentation</Typography>
+        </MenuItem>
+      </Menu>
+    </Sidebar>
+  )
+}
+
+/** @type {import("@mui/material").SxProps} */
+const styles = {
+  avatarContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    my: 5
+  },
+  avatar: {
+    width: '40%',
+    height: 'auto'
+  },
+  name: {
+    fontWeight: 'bold !important',
+    mt: 1
+  },
+  role: {
+    color: 'rgba(0, 0, 0, 0.54)',
+  }
+}
