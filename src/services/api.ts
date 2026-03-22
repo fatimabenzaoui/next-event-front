@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_PUBLIC_API_URL,
+  baseURL: import.meta.env.VITE_PUBLIC_API_URL || "https://fatimabenzaoui.pythonanywhere.com/",
   headers: {
     "Content-Type": "application/json",
   },
