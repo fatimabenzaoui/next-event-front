@@ -1,0 +1,72 @@
+/* Boutons de navigation (prev, next, today) */
+.fc-prev-button, .fc-next-button, .fc-today-button {
+  background-color: rgb(156, 39, 176) !important;
+  border-color: rgb(156, 39, 176) !important;
+  color: white !important;
+}
+
+/* Boutons de navigation au survol */
+.fc-prev-button:hover, .fc-next-button:hover, .fc-today-button:hover {
+  background-color: rgb(197, 156, 224) !important;
+  border-color: rgb(197, 156, 224) !important;
+}
+
+/* Boutons de vue (mois, semaine, jour) */
+.fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button {
+  background-color: rgb(156, 39, 176) !important;
+  border-color: rgb(156, 39, 176) !important;
+  color: white !important;
+}
+
+/* Boutons de vue actifs */
+.fc-dayGridMonth-button.fc-button-active,
+.fc-timeGridWeek-button.fc-button-active,
+.fc-timeGridDay-button.fc-button-active {
+  background-color: rgb(117, 29, 136) !important;
+  border-color: rgb(117, 29, 136) !important;
+}
+
+.fc-button {
+  border-radius: none !important;
+}
+
+/* Retire l'ombre au clic pour tous les boutons FullCalendar */
+.fc-button:focus,
+.fc-button:active,
+.fc-button.fc-button-active {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Titre du calendrier */
+.fc-toolbar-title {
+  color: rgb(117, 29, 136);
+  font-weight: bold;
+}
+
+/* Style de base pour tous les événements */
+.fc-event {
+  background-color: rgb(156, 39, 176);
+  border-color: rgb(156, 39, 176);
+  color: white;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 0.85em;
+}
+
+/* Style au survol des événements */
+.fc-event:hover {
+  background-color: rgb(197, 156, 224);
+  opacity: 0.95;
+}
+
+/* Masque les boutons vides */
+.fc-list-button,
+.fc--button {
+  display: none !important;
+}
+
+/* Assure que le groupe de boutons prend tout l'espace disponible */
+.fc-button-group {
+  display: flex;
+}

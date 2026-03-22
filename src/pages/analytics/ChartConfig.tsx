@@ -1,29 +1,7 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  BarElement
-} from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler, BarElement } from 'chart.js';
 import { getEventsByMonth } from '../../services/EventService';
 
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  BarElement
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler, BarElement);
 
 export const mainChartOptions = {
   responsive: true,
@@ -37,7 +15,8 @@ export const mainChartOptions = {
       text: 'Number of Events per Month',
       font: {
         size: 28
-      }
+      }, 
+      color: 'rgb(117, 29, 136)'
     },
     scales: {
       y: {
@@ -63,7 +42,7 @@ export const mainChartOptions = {
         pointStyle: false,
       },
       line: {
-        borderColor: 'rgb(95, 158, 199)',
+        borderColor: 'rgb(156, 39, 176)',
         fill: true,
         borderWidth: 1.5
       }
@@ -74,7 +53,7 @@ export const mainChartOptions = {
 export const getMainChartData = async () => {
   const data = await getEventsByMonth();
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const counts = new Array(12).fill(0); // Initialise à 0 pour tous les mois
+  const counts = new Array(12).fill(0);
 
   data.forEach(item => {
     const monthIndex = months.indexOf(item.month);
@@ -84,14 +63,14 @@ export const getMainChartData = async () => {
   });
 
   return {
-    labels: months, // Toujours défini
+    labels: months,
     datasets: [
       {
         label: 'Events',
-        data: counts, // Toujours défini
+        data: counts,
         fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
+        backgroundColor: 'rgb(156, 39, 176)',
+        borderColor: 'rgba(156, 39, 176, 0.2)',
       },
     ],
   };

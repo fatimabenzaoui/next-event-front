@@ -1,51 +1,24 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { forwardRef } from "react";
 
-function AnalyticsTabHead({title, value, icon, subtitle, children, onClick}: {title: string; value: string | number; icon?: React.ReactNode; subtitle?: string; children?: React.ReactNode; onClick?: () => void}) {
-  return ( 
-    <Button onClick={onClick} sx={styles.container}>
-      <Typography sx={styles.tabTitle}>{title}</Typography>
-      <Box sx={styles.tabValueRow}>
-        <Typography sx={styles.tabValue}>{value}</Typography>
+interface AnalyticsTabHeadProps {
+  title: string;
+  value: string;
+  subtitle: string;
+  icon?: React.ReactNode;
+}
+
+const AnalyticsTabHead = forwardRef<HTMLDivElement, AnalyticsTabHeadProps>(
+  ({ title, value, subtitle, icon }, ref) => (
+    <Box ref={ref} style={{ textAlign: 'center', padding: '12px 0' }}>
+      <Typography variant="body2">{title}</Typography>
+      <Box display="flex" alignItems="center" justifyContent="center" gap={1}>
+        <Typography variant="h6">{value}</Typography>
         {icon}
       </Box>
-      <Typography sx={styles.tabSubTitle}>{subtitle}</Typography>
-      {children}
-    </Button>
-   );
-}
+      <Typography variant="caption" color="textSecondary">{subtitle}</Typography>
+    </Box>
+  )
+);
 
-/** @type {import("@mui/material").SxProps} */
-const styles = {
-  container: {
-    display: 'flex',
-    alignSelf: 'center',
-    flexDirection: 'column',
-    color: '#555',
-    textTransforme: 'capitalize',
-    py: 2,
-    border: 1,
-    borderColor: '#ddd',
-    flexGrow: 1,
-  },
-  tabTitle: {
-    fontSize: '0.8rem',
-    fontWeight: 500,
-  },
-  tabValueRow: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  tabValue: {
-    fontSize: {xs: '1rem', md: '1.5rem'},
-    color: '#333',
-    mr: 1
-  },
-  tabSubTitle: {
-    fontSize: '0.6rem',
-    fontStyle: 'italic',
-    textTransform: 'lowercase',
-    display: {xs: 'none', md: 'inline'}, 
-    mr: 1
-  },
-}
 export default AnalyticsTabHead;

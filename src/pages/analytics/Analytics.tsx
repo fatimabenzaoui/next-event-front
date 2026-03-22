@@ -1,17 +1,12 @@
-import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import TabPanel from '../../components/TabPanel';
-import { useState, type SyntheticEvent } from 'react';
+import { useState } from 'react';
 import OverviewChart from './OverviewChart';
-
 
 function Analytics() {
   // état pour gérer l'onglet actif
-  const [value, setValue] = useState(0);
-  // gère le changement d'onglet
-  const handleChange = (_event: SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-  
+  const [value] = useState(0);
+
   return ( 
     <Box>
       <TabPanel value={value} index={0}>
@@ -30,16 +25,8 @@ function Analytics() {
       <TabPanel value={value} index={3}>
         <Typography>Revenue content goes here</Typography>
       </TabPanel>
-      
     </Box>
   );
 }
 
 export default Analytics;
-
-/** @type {import("@mui/material").SxProps} */
-const styles = {
-  pageTitle: {
-
-  },
-}

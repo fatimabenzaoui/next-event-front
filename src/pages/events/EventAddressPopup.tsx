@@ -18,7 +18,6 @@ const EventAddressPopup: React.FC<EventAddressPopupProps> = ({ open, onClose, on
   const [street, setStreet] = useState<string>(address?.street || '');
   const [zipCode, setZipCode] = useState<string>(address?.zip_code || '');
   const [cityId, setCityId] = useState<number | null>(address?.city?.id || null);
-  const [cityName, setCityName] = useState<string>(address?.city?.name || '');
   const [cities, setCities] = useState<City[]>([]);
 
   // réinitialise le formulaire quand l'événement change
@@ -26,7 +25,6 @@ const EventAddressPopup: React.FC<EventAddressPopupProps> = ({ open, onClose, on
     setStreet(address?.street || '');
     setZipCode(address?.zip_code || '');
     setCityId(address?.city?.id || null);
-    setCityName(address?.city?.name || '');
   }, [address]);
 
   useEffect(() => {
@@ -96,7 +94,6 @@ const EventAddressPopup: React.FC<EventAddressPopupProps> = ({ open, onClose, on
             value={cities.find(c => c.id === cityId) || null}
             onChange={(_event, newValue) => {
               setCityId(newValue?.id || null);
-              setCityName(newValue?.name || '');
             }}
             renderInput={(params) => (
               <TextField

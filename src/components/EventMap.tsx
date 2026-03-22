@@ -125,7 +125,7 @@ const EventMap = () => {
                       variant="contained"
                       color="secondary"
                       size="small"
-                      onClick={(e) => {
+                      onClick={() => {
                         console.log(`Inscription à l'évènement : ${event.name}`);
                       }}
                     >

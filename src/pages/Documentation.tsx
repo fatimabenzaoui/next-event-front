@@ -8,6 +8,7 @@ import ApiIcon from '@mui/icons-material/Api';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 function Documentation() {
   return (
@@ -231,7 +232,16 @@ function Documentation() {
             VSCODE<br/>
               - REST Client<br/>
               - SQLite IntelliView<br/>
-              - Simple React Snippets<br/>            
+              - Simple React Snippets<br/>
+              - PlantUML<br/><br/>
+
+            CONCEPTION<br/>
+              - USER STORIES (Méthodes AGILES) :<br/>
+            -	Orientation utilisateur : évitent les développements techniques déconnectés des besoins métier<br/>
+            -	Clarté et simplicité : parce qu'elles sont courtes, facilitent la communication transversale<br/>
+            -	Découpage fonctionnel et itératif : permettent un découpage fonctionnel du projet en éléments livrables<br/>
+            -	Gestion des priorités : permettent de prioriser les fonctionnalités selon leur valeur métier<br/>
+            -	Favorise la collaboration : favorisent la compréhension partagée des besoins<br/><br/><br/>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -248,15 +258,6 @@ function Documentation() {
           </Box>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Méthodes AGILE<br/>
-            Choix d'utiliser les user stories :<br/>
-            -	Orientation utilisateur : évitent les développements techniques déconnectés des besoins métier<br/>
-            -	Clarté et simplicité : parce qu'elles sont courtes, facilitent la communication transversale<br/>
-            -	Découpage fonctionnel et itératif : permettent un découpage fonctionnel du projet en éléments livrables<br/>
-            -	Gestion des priorités : permettent de prioriser les fonctionnalités selon leur valeur métier<br/>
-            -	Favorise la collaboration : favorisent la compréhension partagée des besoins<br/><br/><br/>
-          </Typography>
           <Typography>
             En tant quadministrateur, je veux ...<br/>
               - Gérer les évènements (CRUD)<br/>
@@ -304,12 +305,13 @@ function Documentation() {
         >
           <Box sx={titleBox}>
             <ApiIcon sx={{ width: 36, height: 36 }} />
-            <Typography sx={title}>Events API</Typography>
+            <Typography sx={title}>API</Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            // CRUD :<br/>
+            EVENTS API<br/>
+            # CRUD :<br/>
             GET - POST - PUT - PATCH - DELETE : /api/events/ - /api/events/&lt;id&gt;/<br/>
             GET : /api/events/current/<br/>
             GET - POST - PUT - PATCH - DELETE : /api/flyers/ - /api/flyers/&lt;id&gt;/<br/>
@@ -318,7 +320,7 @@ function Documentation() {
             GET : /api/geocode/?address=&lt;address&gt;<br/>
             GET - POST - PUT - PATCH - DELETE : /api/categories/ - /api/categories/&lt;id&gt;/<br/><br/>
 
-            // ANALYTICS :<br/>
+            # ANALYTICS :<br/>
             GET : /api/events/count/<br/>
             GET : /api/events/by-month/<br/>
             GET : /api/events/count-by-city/<br/>
@@ -327,100 +329,70 @@ function Documentation() {
             GET : /api/events/count-by-category/<br/>
             GET : /api/events/top-5-cities/<br/><br/>
 
-            // FILTRES :<br/>
+            # FILTRES :<br/>
             GET : /api/events/?city_id=&lt;id&gt;<br/>
             GET : /api/events/?school_id=&lt;id&gt;<br/>
             GET : /api/events/?association_id=&lt;id&gt;<br/>
-            GET : /api/events/?category_id=&lt;id&gt;<br/>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+            GET : /api/events/?category_id=&lt;id&gt;<br/><br/><br/>
 
-      {/* USERS API */}
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Box sx={titleBox}>
-            <ApiIcon sx={{ width: 36, height: 36 }} />
-            <Typography sx={title}>Users API</Typography>
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            // CRUD :<br/>
-            GET - POST - PUT - PATCH - DELETE : /api/users/ - /api/users/&lt;id&gt;/<br/>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+            USERS API<br/>
+            # CRUD :<br/>
+            GET - POST - PUT - PATCH - DELETE : /api/users/ - /api/users/&lt;id&gt;/<br/><br/><br/>
 
-      {/* SCHOOLS API */}
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Box sx={titleBox}>
-            <ApiIcon sx={{ width: 36, height: 36 }} />
-            <Typography sx={title}>Schools API</Typography>
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            // CRUD :<br/>
+            SCHOOLS API<br/>
+            # CRUD :<br/>
             GET - POST - PUT - PATCH - DELETE : /api/schools/ - /api/schools/&lt;id&gt;/<br/>
             GET - POST - PUT - PATCH - DELETE : /api/school-addresses/ - /api/school-addresses/&lt;id&gt;/<br/>
             GET - POST - PUT - PATCH - DELETE : /api/cities/ - /api/cities/&lt;id&gt;/<br/>
             GET : /api/geocode/?address=&lt;address&gt;&lt;/address&gt;<br/><br/>
-            // ANALYTICS :<br/>
-            GET : /api/schools/count/
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+            # ANALYTICS :<br/>
+            GET : /api/schools/count/<br/><br/><br/>
 
-      {/* ASSOCIATIONS API */}
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Box sx={titleBox}>
-            <ApiIcon sx={{ width: 36, height: 36 }} />
-            <Typography sx={title}>Associations API</Typography>
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            // CRUD :<br/>
-            GET - POST - PUT - PATCH - DELETE : /api/associations/ - /api/associations/&lt;id&gt;/<br/>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+            ASSOCIATIONS API<br/>
+            # CRUD :<br/>
+            GET - POST - PUT - PATCH - DELETE : /api/associations/ - /api/associations/&lt;id&gt;/<br/><br/><br/>
 
-      {/* STUDENTS API */}
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Box sx={titleBox}>
-            <ApiIcon sx={{ width: 36, height: 36 }} />
-            <Typography sx={title}>Students API</Typography>
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            // CRUD :<br/>
+            STUDENTS API<br/>
+            # CRUD :<br/>
             GET - POST - PUT - PATCH - DELETE : /api/students/ - /api/students/&lt;id&gt;/<br/>
           </Typography>
         </AccordionDetails>
       </Accordion>
 
+      {/* DEPLOY */}
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Box sx={titleBox}>
+            <RocketLaunchIcon sx={{ width: 36, height: 36 }} />
+            <Typography sx={title}>Deploy</Typography>
+          </Box>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+<pre>
+# FRONT<br/>
+Installer gh-pages<br/>
+npm i gh-pages<br/>
+Modifier le package.json :<br/>
+"homepage": "https://fatimabenzaoui.github.io/myReactApp"<br/>
+"scripts": <br/>
+"predeploy": "npm run build",<br/>
+"deploy": "gh-pages -d build"<br/>
+
+Lancer les commandes :<br/>
+npm run predeploy (création du dossier "build")<br/>
+npm run deploy (publication sur gh-pages)<br/><br/>
+
+# BACK
+
+</pre>       
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
     </Box>
   );
 }

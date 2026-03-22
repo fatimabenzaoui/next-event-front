@@ -12,21 +12,10 @@ interface EventFlyerPopupProps {
 }
 
 const EventCategoryPopup: React.FC<EventFlyerPopupProps> = ({ open, onClose, onSave, flyer }) => {
-  // État pour stocker le fichier du flyer
+  // état pour stocker le fichier du flyer
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  // Référence pour le champ d'upload caché
+  // référence pour le champ d'upload caché
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // état local pour les champs du formulaire
-  const [file_name, setFileName] = useState(flyer?.file_name || '');
-  const [file_path, setFilePath] = useState(flyer?.file_path || '');
-
-  // réinitialise le formulaire quand l'événement change
-  useEffect(() => {
-    setFileName(flyer?.file_name || '');
-    setFilePath(flyer?.file_path || '');
-  }, [flyer]);
-
   // état pour stocker l'URL du flyer (pour l'aperçu)
     const [flyerPreview, setFlyerPreview] = useState<string | null>(null);
   

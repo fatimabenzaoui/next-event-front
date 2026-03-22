@@ -10,11 +10,11 @@ import {
 import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+// @ts-ignore
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
 import type { Event } from '../models/Event';
 import { formatEventDateRange } from '../utils/dateFormat';
 import { findAllHomeEvents, findEventsByCity, findEventsBySchool, findEventsByAssociation, findEventsByCategory } from '../services/EventService';
@@ -68,7 +68,8 @@ const getTitle = () => {
                 id: event.address.id,
                 street: event.address.street,
                 zip_code: event.address.zip_code,
-                city: event.address.city?.name || "",
+                // city: event.address.city?.name || "",
+                city: event.address.city,
                 latitude: event.address.latitude,
                 longitude: event.address.longitude,
               }
@@ -138,35 +139,8 @@ const getTitle = () => {
     ],
   };
 
-  // Animation des titres
-  const clickVariants: Variants = {
-    pulse: {
-      scale: [1, 1.1, 1],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-      },
-    },
-  };
-
   return (
     <Box sx={{ p: 3 }}>
-      {/* Titre : Inscris-toi en un clic ! */}
-      {/* <Typography
-        variant="h5"
-        sx={generalTitle}
-      >
-        <motion.span
-          variants={clickVariants}
-          animate="pulse"
-          style={{
-            display: 'inline-block',
-            willChange: 'transform',
-          }}
-        >
-          Inscris-toi en un clic !
-        </motion.span>
-      </Typography><br/> */}
       
       {/* Titre : Epitech events par défaut */}
       <Typography variant="h4" sx={carrouselTitle}>
@@ -230,7 +204,7 @@ const getTitle = () => {
                       {/* Bouton Favoris */}
                       <IconButton
                         onClick={(e) => {
-                          e.stopPropagation(); // Empêche l'ouverture de la modale
+                          e.stopPropagation();
                           toggleFavorite(event?.id?.toString() || '');
                         }}
                         sx={{ p: 0.5 }}
@@ -251,7 +225,7 @@ const getTitle = () => {
                       <Typography variant="body2" color="text.secondary">
                         <EventIcon sx={{ mr: 0.5, verticalAlign: 'middle' }} /><strong>Date :</strong> {formatEventDateRange(String(event.start_date ?? ''), String(event.end_date ?? '')).date}<br/>
                         <AccessTimeIcon sx={{ mr: 0.5, verticalAlign: 'middle' }} /><strong>Heure :</strong> {formatEventDateRange(String(event.start_date ?? ''), String(event.end_date ?? '')).time}<br/>
-                        <LocationOnIcon sx={{ mr: 0.5, verticalAlign: 'middle' }} /><strong>Lieu :</strong> {event?.address?.street} {" "} {event?.address?.zip_code} {" "} {event?.address?.city}
+                        <LocationOnIcon sx={{ mr: 0.5, verticalAlign: 'middle' }} /><strong>Lieu :</strong> {String(event?.address?.street ?? '')} {" "} {String(event?.address?.zip_code ?? '')} {" "} {String(event?.address?.city?.name ?? '')}
                       </Typography>
                     </Box>                    
                   </CardContent>
@@ -271,7 +245,6 @@ const getTitle = () => {
                       color="secondary"
                       size="small"
                       onClick={(e) => {
-                        // empêche l'ouverture de la modale
                         e.stopPropagation();
                         console.log(`Inscription à l'évènement : ${event.name}`);
                       }}
@@ -279,7 +252,6 @@ const getTitle = () => {
                       Je m'inscris
                     </Button>
                   </CardActions>
-
                 </Card>
               </motion.div>
             </Box>
@@ -342,30 +314,13 @@ const getTitle = () => {
                   <strong>Date :</strong> {formatEventDateRange(String(selectedEvent.start_date ?? ''), String(selectedEvent.end_date ?? '')).date} ({formatEventDateRange(String(selectedEvent.start_date ?? ''), String(selectedEvent.end_date ?? '')).time})                  
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  <strong>Lieu :</strong> {selectedEvent.address?.street} {" "} {selectedEvent.address?.zip_code} {" "} {selectedEvent.address?.city?.name}                 
+                  <strong>Lieu :</strong> {selectedEvent.address?.street} {" "} {selectedEvent.address?.zip_code} {" "} {String(selectedEvent.address?.city?.name ?? '')}                 
                 </Typography>
               </>
             )}
           </Box>
         </Fade>
       </Modal>
-
-      {/* Titre : Trouve comment y aller */}
-      {/* <Typography
-        variant="h5"
-        sx={mapTitle}
-      >
-        <motion.span
-          variants={clickVariants}
-          animate="pulse"
-          style={{
-            display: 'inline-block',
-            willChange: 'transform',
-          }}
-        >
-          Trouve comment y aller !
-        </motion.span>
-      </Typography> */}
       
       {/* Map */}
       {!(isEpitechCampusActive || isEpitechAssosActive) && <EventMapHome />}
@@ -379,17 +334,6 @@ const getTitle = () => {
 export default Home;
 
 /** @type {import("@mui/material").SxProps} */
-const generalTitle = {
-  color: "#FF5722",
-  fontFamily: 'Holtwood One SC',
-  fontSize: '35px',
-  textShadow: '2px 2px #000',
-  mb: 2,
-  textAlign: 'center',
-  transform: 'skew(-10deg, 0)',
-  transformOrigin: 'center'
-}
-
 const carrouselTitle = {
   fontFamily: 'Holtwood One SC',
   color: '#9C27B0',
@@ -397,15 +341,3 @@ const carrouselTitle = {
   fontSize: '30px',
   textAlign: 'center',
 }
-
-const mapTitle = {
-  mb: 2, 
-  textShadow: '2px 2px #000',
-  color: "#FF5722",
-  fontFamily: 'Holtwood One SC',
-  fontSize: '35px',
-  textAlign: 'center',
-  transform: 'skew(-10deg, 0)',
-  transformOrigin: 'center',
-};
-

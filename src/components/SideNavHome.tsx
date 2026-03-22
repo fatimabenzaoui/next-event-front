@@ -5,7 +5,7 @@ import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import LocationSearchingOutlinedIcon from '@mui/icons-material/LocationSearchingOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { findAllEventCategories } from '../services/EventCategoryService';
 import type { EventCategory } from '../models/EventCategory';
@@ -20,15 +20,11 @@ import type { Association } from '../models/Association';
 
 export default function SideNav() {
   const { collapsed } = useProSidebar();
-  const location = useLocation();
-
   const [cities, setCities] = useState<City[]>([]);
   const [schools, setSchools] = useState<School[]>([]);
   const [associations, setAssociations] = useState<Association[]>([]);
   const [categories, setCategories] = useState<EventCategory[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  // const [isEpitechCampusActive, setIsEpitechCampusActive] = useState<boolean>(false);
-  // const [isEpitechAssosActive, setIsEpitechAssosActive] = useState<boolean>(false);
 
   const {
     selectedCity,
@@ -294,30 +290,15 @@ export default function SideNav() {
 
 
 /** @type {import("@mui/material").SxProps} */
-const nextEventSideNavTitle = {
-  fontFamily: 'Holtwood One SC',
-  color: '#000',
-  textShadow: '2px 2px #FFF',
-  fontSize: '15px',
-}
-
 const styles = {
   avatarContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     my: 5,
-    // gap: 1,
   },
   avatar: {
     width: '40%',
     height: 'auto',
   },
-  // name: {
-  //   fontWeight: 'bold !important',
-  //   mt: 1
-  // },
-  // role: {
-  //   color: 'rgba(0, 0, 0, 0.54)',
-  // },
 }

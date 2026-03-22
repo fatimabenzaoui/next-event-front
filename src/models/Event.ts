@@ -17,4 +17,5 @@ export interface Event {
   category_name?: string;
   association_id: number;
   association: Association;
+  school_id?: number;
 }

@@ -1,3 +1,4 @@
+import "./custom-calendar.css";
 import { useState, useEffect, type SyntheticEvent } from 'react';
 import { Box, Chip, Grid, IconButton, Modal, Tab, Tabs, Typography } from '@mui/material';
 import { DataGrid, type GridColDef, type GridRenderCellParams } from '@mui/x-data-grid';
@@ -266,7 +267,17 @@ const Events = () => {
   return (
     <Box sx={{ p: 1 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="events tabs">
+        <Tabs value={value} onChange={handleChange} aria-label="events tabs"
+        sx={{
+            '& .MuiTabs-indicator': {
+              backgroundColor: 'rgb(156, 39, 176)',
+              height: 3,
+            },
+            '& .Mui-selected': {
+              color: 'rgb(156, 39, 176) !important',
+            },
+          }}
+        >
           <Tab label="Calendar" id="tab-0" aria-controls="tabpanel-0" />
           <Tab label="Map" id="tab-1" aria-controls="tabpanel-1" />
           <Tab label="Events" id="tab-2" aria-controls="tabpanel-2" />
@@ -289,7 +300,7 @@ const Events = () => {
           headerToolbar={{
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,list',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,list,'
           }}
           slotMinTime="07:00:00"
           slotMaxTime="24:00:00"

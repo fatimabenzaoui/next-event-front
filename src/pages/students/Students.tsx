@@ -14,7 +14,17 @@ function Students() {
   return ( 
     <Box sx={{ p: 1 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="users tabs">
+        <Tabs value={value} onChange={handleChange} aria-label="users tabs"
+        sx={{
+            '& .MuiTabs-indicator': {
+              backgroundColor: 'rgb(156, 39, 176)',
+              height: 3,
+            },
+            '& .Mui-selected': {
+              color: 'rgb(156, 39, 176) !important',
+            },
+          }}
+        >
           <Tab label="Students" id="tab-0" aria-controls="tabpanel-0" />
           <Tab label="Comments" id="tab-1" aria-controls="tabpanel-1" />
           <Tab label="Analytics" id="tab-2" aria-controls="tabpanel-2" />

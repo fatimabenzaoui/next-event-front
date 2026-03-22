@@ -1,9 +1,8 @@
-import React from 'react';
 import { Typography, Box, Chip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import type { Association } from '../models/Association';
 
-// Conteneur principal (remplace Card)
+
 const FlipCardContainer = styled('div')({
   perspective: '1000px',
   // width: '100%',
@@ -41,14 +40,14 @@ const CardFace = styled('div')({
 });
 
 // Face avant
-const FrontFace = styled(CardFace)(({ theme }) => ({
+const FrontFace = styled(CardFace)(() => ({
   background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-  color: theme.palette.text.primary,
+  color: '#333333',
 }));
 
 // Face arrière (tournée par défaut)
-const BackFace = styled(CardFace)(({ theme }) => ({
-  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+const BackFace = styled(CardFace)(() => ({
+  background: 'linear-gradient(135deg, #667eea 0%, #9C27B0 100%)',
   color: 'white',
   transform: 'rotateY(180deg)',
 }));

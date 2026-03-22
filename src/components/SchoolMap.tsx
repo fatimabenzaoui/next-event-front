@@ -72,10 +72,7 @@ const SchoolMap = () => {
 
   return (
     <Box sx={{ mt: 2, p: 4, backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 2, width:'100%' }}>
-      
       <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', width: '100%' }}>
-        {/* <Box sx={{width:'33%', display: 'flex', alignItems: 'center'}}><MapIcon color="primary" sx={{ mr: 1 }} />
-        Carte des écoles</Box> */}
         <Box sx={{display:'flex', gap:2, width: '100%'}}>
           <Autocomplete
             sx={{ width: '100%', flexGrow: 1 }}

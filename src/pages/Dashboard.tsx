@@ -36,10 +36,9 @@ function Dashboard() {
 
   return (
     <Box sx={dashboardContainer}>
-      <Grid container spacing={2} justifyContent="space-between"
-    sx={{ width: "100%" }}>
+      <Grid sx={cardsContainer}>
         {/* EVENTS */}
-        <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}>
+        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
           <Card sx={cardStyle}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
@@ -58,10 +57,10 @@ function Dashboard() {
               </Box>
             </Box>
           </Card>
-        </Grid>
+        {/* </Grid> */}
 
         {/* USERS */}
-        <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}>
+        {/* <Grid item xs={12} sm={6} md={4} lg={2} sx={{ flexGrow: 1, display: "flex" }}> */}
           <Card sx={cardStyle}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
@@ -81,10 +80,10 @@ function Dashboard() {
               </Box>
             </Box>
           </Card>
-        </Grid>
+        {/* </Grid> */}
 
         {/* SCHOOLS */}
-        <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}>
+        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
           <Card sx={cardStyle}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
@@ -103,10 +102,10 @@ function Dashboard() {
               </Box>
             </Box>
           </Card>
-        </Grid>
+        {/* </Grid> */}
 
         {/* ASSOCIATIONS */}
-        <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}>
+        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
           <Card sx={cardStyle}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
@@ -126,10 +125,10 @@ function Dashboard() {
               </Box>
             </Box>
           </Card>
-        </Grid>
+        {/* </Grid> */}
 
         {/* ETUDIANTS */}
-        <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}>
+        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
           <Card sx={cardStyle}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
@@ -149,7 +148,7 @@ function Dashboard() {
               </Box>
             </Box>
           </Card>
-        </Grid>
+        {/* </Grid> */}
       </Grid>
     </Box>
   );
@@ -168,10 +167,16 @@ const dashboardContainer = {
   padding: 2,
 };
 
+const cardsContainer = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  gap: 2,
+  width: '100%',
+};
+
 const cardStyle = {
   height: "100%",
-  width: "100%",
-  display: "flex",
+  flex: 1,
   flexDirection: "column",
-  minWidth: 0, // Permet de forcer le respect de la largeur du parent
+  minWidth: 0,
 };

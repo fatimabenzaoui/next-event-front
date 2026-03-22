@@ -1,16 +1,11 @@
 import { Box, Typography, Avatar } from '@mui/material';
-
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-
+import { useProSidebar , Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined';
 import SourceOutlinedIcon from '@mui/icons-material/SourceOutlined';
 import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import SettingsOutminedIcon from '@mui/icons-material/SettingsOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
-import { useProSidebar } from 'react-pro-sidebar';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function SideNav() {

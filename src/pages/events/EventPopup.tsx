@@ -4,16 +4,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { DateTimePicker  } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { findAllEventCategories } from "../../services/EventCategoryService";
-import type { EventCategory } from "../../models/EventCategory";
 import type { EventAddress } from '../../models/EventAddress';
-import type { City } from '../../models/City';
-import { findAllCities } from '../../services/CityService';
-import type { Association } from '../../models/Association';
-import { findAllAssociations } from '../../services/AssociationService';
-import type { School } from '../../models/School';
-import { findAllSchools } from '../../services/SchoolService';
 import { useEventContext } from './EventContext';
+import type { EventCategory } from '../../models/EventCategory';
+import type { Association } from '../../models/Association';
 
 // Interface pour les props du composant
 interface EventPopupProps {
@@ -29,8 +23,10 @@ interface EventPopupProps {
     max_participants?: number;
     flyer_path?: string;
     address?: EventAddress;
+    category?: EventCategory;
     category_id?: number;
     category_name?: string;
+    association: Association;
     association_id?: number;
     school_id?: number;
   } | null;
@@ -38,7 +34,7 @@ interface EventPopupProps {
 
 const EventPopup: React.FC<EventPopupProps> = ({ open, onClose, onSave, event }) => {
 
-   const { cities, associations, schools, categories } = useEventContext();
+  const { cities, associations, schools, categories } = useEventContext();
 
   // état local pour les champs du formulaire
   const [name, setName] = useState(event?.name || '');
@@ -59,29 +55,22 @@ const EventPopup: React.FC<EventPopupProps> = ({ open, onClose, onSave, event })
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-  if (!event) return;
+    if (!event) return;
 
-  // Mise à jour des champs simples
-  setName(event.name || '');
-  setDescription(event.description || '');
-  setStartDate(event.start_date ? new Date(event.start_date) : null);
-  setEndDate(event.end_date ? new Date(event.end_date) : null);
-  setMaxParticipants(event.max_participants || 0);
-  setFlyer(null);
-  setStreet(event.address?.street || '');
-  setZipCode(event.address?.zip_code || '');
-  setCityId(event.address?.city?.id || null);
-  setSchoolId(event?.association?.school?.id || null);
-  setAssociationId(event?.association?.id || null);
-  setCategoryId(event?.category?.id || null);
-}, [event]);
-
-  // Logs de débogage
-  useEffect(() => {
-    console.log("Categories list:", categories);
-    console.log("Event complet:", event);
-  }, [event?.category?.id, categories]);
-
+    // mise à jour des champs simples
+    setName(event.name || '');
+    setDescription(event.description || '');
+    setStartDate(event.start_date ? new Date(event.start_date) : null);
+    setEndDate(event.end_date ? new Date(event.end_date) : null);
+    setMaxParticipants(event.max_participants || 0);
+    setFlyer(null);
+    setStreet(event.address?.street || '');
+    setZipCode(event.address?.zip_code || '');
+    setCityId(event.address?.city?.id || null);
+    setSchoolId(event?.association?.school?.id || null);
+    setAssociationId(event?.association?.id || null);
+    setCategoryId(event?.category?.id || null);
+  }, [event]);
 
   // état pour stocker l'URL du flyer (pour l'aperçu)
   const [flyerPreview, setFlyerPreview] = useState<string | null>(null);
@@ -155,61 +144,6 @@ const EventPopup: React.FC<EventPopupProps> = ({ open, onClose, onSave, event })
       setExistingFlyerPreview(null);
     }
   }, [event]);
-
-  // charge les catégories
-  // useEffect(() => {
-  //   const loadCategories = async () => {
-  //     try {
-  //       const data = await findAllEventCategories();
-  //       setCategories(data);
-  //     } catch (error) {
-  //       console.error("Failed to load categories", error);
-  //     }
-  //   };
-  //   loadCategories();
-  // }, []);
-
-  //const [cities, setCities] = useState<City[]>([]);
-  // charge les villes
-  // useEffect(() => {
-  //   const fetchCities = async () => {
-  //     try {
-  //       const data = await findAllCities();
-  //       setCities(data);
-  //     } catch (error) {
-  //       console.error("Failed to load cities :", error);
-  //     }
-  //   };
-  //   fetchCities();
-  // }, []);
-
-  //const [associations, setAssociations] = useState<Association[]>([]);
-  // charge les associations
-  // useEffect(() => {
-  //   const fetchAssociations = async () => {
-  //     try {
-  //       const data = await findAllAssociations();
-  //       setAssociations(data);
-  //     } catch (error) {
-  //       console.error("Failed to load associations :", error);
-  //     }
-  //   };
-  //   fetchAssociations();
-  // }, []);
-
-  //const [schools, setSchools] = useState<School[]>([]);
-  // charge les écoles
-  // useEffect(() => {
-  //   const fetchSchools = async () => {
-  //     try {
-  //       const data = await findAllSchools();
-  //       setSchools(data);
-  //     } catch (error) {
-  //       console.error("Failed to load schools :", error);
-  //     }
-  //   };
-  //   fetchSchools();
-  // }, []);
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -301,7 +235,7 @@ const EventPopup: React.FC<EventPopupProps> = ({ open, onClose, onSave, event })
           />
 
           <Autocomplete
-          key={`category-autocomplete-${categoryId}-${categories.length}`}
+            key={`category-autocomplete-${categoryId}-${categories.length}`}
             options={categories}
             getOptionLabel={(option) => option.name}
             value={categories.find(c => c.id === categoryId) || null}
@@ -368,43 +302,6 @@ const EventPopup: React.FC<EventPopupProps> = ({ open, onClose, onSave, event })
               {flyer.name} ({Math.round(flyer.size / 1024)} Ko)
             </Typography>
           )}
-
-          {/* Aperçu dy flyer */}
-          {/* {flyerPreview && flyer?.type.startsWith('image/') && (
-            <Box mt={2} textAlign="center">
-              <Typography variant="subtitle2" gutterBottom>
-                Aperçu du flyer :
-              </Typography>
-              <img
-                src={flyerPreview}
-                alt="Aperçu du flyer"
-                style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '4px' }}
-              />
-            </Box>
-          )} */}
-
-          {/* APERCU FLYER EXISTANT */}
-          {/* {existingFlyerPreview && (
-            <Box mt={2} textAlign="center">
-              <img
-                src={existingFlyerPreview}
-                alt="Flyer actuel"
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '200px',
-                  borderRadius: '4px',
-                  border: '1px solid #ddd',
-                }}
-                onError={(e) => {
-                  console.error("Erreur de chargement de l'image :", existingFlyerPreview);
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <Typography variant="subtitle2" gutterBottom>
-                {event?.flyer_path}
-              </Typography>
-            </Box>
-          )} */}
 
           {/* Affiche soit le nouvel aperçu, soit l'ancien, mais pas les deux */}
           {flyerPreview && flyer?.type.startsWith('image/') ? (

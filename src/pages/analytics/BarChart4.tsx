@@ -43,7 +43,7 @@ const BarChart4 = () => {
               label: 'Number of Events',
               data: counts,
               backgroundColor: [
-                '#4e79a7', '#f28e2b', '#e15759', '#76b7b2',
+                '#9C27B0', '#f28e2b', '#e15759', '#76b7b2',
                 '#59a14f', '#edc948', '#b07aa1', '#ff9da7',
                 '#9c755f', '#bab0ac'
               ],
@@ -97,7 +97,7 @@ const BarChart4 = () => {
               responsive: true,
               plugins: {
                 legend: { position: 'top' },
-                title: { display: true, text: 'Number of Events per School', font: { size: 28 } },
+                title: { display: true, text: 'Number of Events per School', font: { size: 28 }, color: 'rgb(117, 29, 136)' },
               },
             }}
           />
