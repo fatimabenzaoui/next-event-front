@@ -9,6 +9,16 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import notionIcon from '../assets/notion.png';
+import githubIcon from '../assets/github.png';
+import trelloIcon from '../assets/trello.png';
+import figmaIcon from '../assets/figma.png';
+
+import eventsClassDiagram from '../assets/events-class-diagram.png';
+import studentsClassDiagram from '../assets/students-class-diagram.png';
+import associationsClassDiagram from '../assets/associations-class-diagram.png';
+import nextEventClassDiagram from '../assets/next-event-class-diagram.png';
+import usersClassDiagram from '../assets/users-class-diagram.png';
 
 function Documentation() {
   return (
@@ -35,7 +45,8 @@ function Documentation() {
             - pip install django-cors-headers<br/>
             - pip install pillow<br/>
             - pip install geopy<br/>
-            - pip install django-filter<br/><br/>
+            - pip install django-filter<br/>
+            - pip install mysqlclient<br/><br/>
 
             - Créer un projet Django : django-admin startproject back .<br/>
             - Créer une application Django : django-admin startapp event<br/>
@@ -66,6 +77,7 @@ function Documentation() {
               - npm install react-chartjs-2<br/>
               - npm install framer-motion react-slick slick-carousel<br/>
               - npm install leaflet react-leaflet leaflet-routing-machine<br/>
+              - npm install gh-pages
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -77,7 +89,7 @@ function Documentation() {
           id="panel1a-header"
         >
           <Box sx={titleBox}>
-            <Avatar alt='' src='src/assets/notion.png' sx={{ width: 36, height: 36 }} />
+            <Avatar alt='' src={notionIcon} sx={{ width: 36, height: 36 }} />
             <Typography sx={title}>Notion</Typography>
           </Box>
         </AccordionSummary>
@@ -104,7 +116,7 @@ function Documentation() {
           id="panel2a-header"
         >
           <Box sx={titleBox}>
-            <Avatar alt='' src='src/assets/github.png' sx={{ width: 36, height: 36 }} />
+            <Avatar alt='' src={githubIcon} sx={{ width: 36, height: 36 }} />
             <Typography sx={title}>GitHub</Typography>
           </Box>
         </AccordionSummary>
@@ -141,7 +153,7 @@ function Documentation() {
           id="panel2a-header"
         >
           <Box sx={titleBox}>
-            <Avatar alt='' src='src/assets/trello.png' sx={{ width: 36, height: 36 }} />
+            <Avatar alt='' src={trelloIcon} sx={{ width: 36, height: 36 }} />
             <Typography sx={title}>Trello</Typography>
           </Box>
         </AccordionSummary>
@@ -166,7 +178,7 @@ function Documentation() {
           id="panel2a-header"
         >
           <Box sx={titleBox}>
-            <Avatar alt='' src='src/assets/figma.png' sx={{ width: 36, height: 36 }} />
+            <Avatar alt='' src={figmaIcon} sx={{ width: 36, height: 36 }} />
             <Typography sx={title}>Figma</Typography>
           </Box>
         </AccordionSummary>
@@ -197,13 +209,13 @@ function Documentation() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <img alt='events-class-diagram' src='src/assets/events-class-diagram.png' />
-            <img alt='students-class-diagram' src='src/assets/students-class-diagram.png' style={{ marginLeft: 16 }} />
-            <img alt='associations-class-diagram' src='src/assets/associations-class-diagram.png' style={{ marginLeft: 16 }} />
+            <img alt='events-class-diagram' src={eventsClassDiagram} />
+            <img alt='students-class-diagram' src={studentsClassDiagram} style={{ marginLeft: 16 }} />
+            <img alt='associations-class-diagram' src={associationsClassDiagram} style={{ marginLeft: 16 }} />
           </Typography>
           <Typography>
-            <img alt='next-event-class-diagram' src='src/assets/next-event-class-diagram.png' />
-            <img alt='users-class-diagram' src='src/assets/users-class-diagram.png' style={{ marginLeft: 16 }} />
+            <img alt='next-event-class-diagram' src={nextEventClassDiagram} />
+            <img alt='users-class-diagram' src={usersClassDiagram} style={{ marginLeft: 16 }} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -221,6 +233,14 @@ function Documentation() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
+            DATABASE<br/>
+              SQLITE3 - MYSQL<br/>
+              NB : !!! de sqlite3 à mysql !!!<br/>
+              supprimer __pycache et ttes les migrations dans le dossier migrations de l'application<br/>
+              python manage.py makemigrations<br/>
+              python manage.py migrate<br/>
+              pip install mysqlclient<br/><br/>
+
             BACK<br/>
               - LANG : python<br/>
               - FRAMEWORK : django<br/><br/>
@@ -373,23 +393,72 @@ function Documentation() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-<pre>
+<p>
 # FRONT<br/>
-Installer gh-pages<br/>
-npm i gh-pages<br/>
+Installer gh-pages : npm i gh-pages<br/>
 Modifier le package.json :<br/>
-"homepage": "https://fatimabenzaoui.github.io/myReactApp"<br/>
-"scripts": <br/>
+"homepage": "https://fatimabenzaoui.github.io/next-event-front"<br/>
+"scripts": {'{'}<br/>
 "predeploy": "npm run build",<br/>
-"deploy": "gh-pages -d build"<br/>
-
+"deploy": "gh-pages -d dist"<br/>
+{'}'}<br/>
 Lancer les commandes :<br/>
-npm run predeploy (création du dossier "build")<br/>
+npm run predeploy (création du dossier "dist")<br/>
 npm run deploy (publication sur gh-pages)<br/><br/>
 
-# BACK
+Régler les routes :<br/>
+- ajouter l'attribut basename à la balise BrowserRouter dans App.tsx : &lt;BrowserRouter basename="/next-event-front"&gt;<br/><br/>
+- modifier vite.config.ts :<br/>
+import {'{'} defineConfig {'}'} from 'vite';<br/>
+import react from '@vitejs/plugin-react';<br/>
 
-</pre>       
+export default defineConfig({'{'}<br/>
+  base: '/next-event-front/',<br/>
+  plugins: [react()],<br/>
+  build: {'{'}<br/>
+    outDir: 'dist', // Dossier de sortie (par défaut pour Vite)<br/>
+    emptyOutDir: true, // Nettoie le dossier avant chaque build<br/>
+  {'}'},<br/>
+{'}'});<br/><br/>
+Régler les chemins des images<br/>
+MARQUEUR DE LOCALISATION POUR LES CARTES<br/>
+- déplacer les 3 images (marker-icon-2x.png - marker-icon.png - marker-shadow.png) 
+du dossier node_modules/leaflet/dist/images/ dans le dossier public/img<br/>
+- ajouter ce code pour les appeler :<br/>
+import L from 'leaflet';<br/>
+
+# corrige le chemin des icônes<br/>
+const defaultIcon = L.icon({'{'}<br/>
+  iconRetinaUrl: '/next-event-front/img/marker-icon-2x.png',<br/>
+  iconUrl: '/next-event-front/img/marker-icon.png',<br/>
+  shadowUrl: '/next-event-front/img/marker-shadow.png',<br/>
+  iconSize: [25, 41],<br/>
+  iconAnchor: [12, 41],<br/>
+  popupAnchor: [1, -34],<br/>
+  shadowSize: [41, 41],<br/>
+{'}'});<br/>
+
+# définit l'icône par défaut<br/>
+L.Marker.prototype.options.icon = defaultIcon;<br/><br/>
+
+AUTRES IMAGES<br/>
+- déplacer les images dans le dossier public et modifier les src des images : src="/next-event-front/notion.png"<br/>
+- ou s'assurer que celles-ci sont importées dans le code pour que Vite les copie dans dist/ :<br/>
+import notionIcon from '../assets/notion.png'; et dans les src des images : src={'{'}notionIcon{'}'}<br/><br/>
+
+# BACK<br/>
+Django (settings.py)<br/>
+CORS_ALLOWED_ORIGINS = [<br/>
+    "https://fatimabenzaoui.github.io",<br/>
+]<br/>
+
+
+
+
+
+
+
+</p>       
           </Typography>
         </AccordionDetails>
       </Accordion>

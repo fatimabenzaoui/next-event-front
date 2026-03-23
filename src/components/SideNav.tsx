@@ -7,6 +7,7 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { Link, useLocation } from 'react-router-dom';
+import defaultAvatar from '../assets/default-avatar.png';
 
 export default function SideNav() {
 
@@ -24,7 +25,7 @@ export default function SideNav() {
     >
 
       <Box sx={styles.avatarContainer}>
-        <Avatar sx={styles.avatar} alt='' src='src/assets/default-avatar.png' />
+        <Avatar sx={styles.avatar} alt='' src={defaultAvatar} />
         { !collapsed ? <Typography variant="body2" sx={styles.name}>Fatima Benzaoui</Typography> : null }
         { !collapsed ? <Typography variant="overline" sx={styles.role}>Administrator</Typography> : null }
       </Box>

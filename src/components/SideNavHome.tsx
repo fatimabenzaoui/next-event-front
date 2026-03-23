@@ -5,6 +5,7 @@ import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import LocationSearchingOutlinedIcon from '@mui/icons-material/LocationSearchingOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { findAllEventCategories } from '../services/EventCategoryService';
@@ -16,6 +17,7 @@ import { findAllCities } from '../services/CityService';
 import { findAllAssociations } from '../services/AssociationService';
 import type { City } from '../models/City';
 import type { Association } from '../models/Association';
+import epitechLogo from '../assets/epitech-logo.svg';
 
 
 export default function SideNav() {
@@ -132,7 +134,7 @@ export default function SideNav() {
       backgroundColor="rgba(239, 236, 236, 1)"
     >
       <Box sx={styles.avatarContainer}>
-        <Avatar sx={styles.avatar} alt="" src="src/assets/default-avatar.png" />
+        <Avatar sx={styles.avatar} alt="" src={epitechLogo} />
       </Box>
 
       <Menu
@@ -268,7 +270,7 @@ export default function SideNav() {
         <MenuItem
           active={isEpitechCampusActive}
           component={<Link to="/" />}
-          icon={<SchoolOutlinedIcon />}
+          icon={<RoomOutlinedIcon />}
           onClick={handleEpitechCampusClick}
         >
           <Typography variant="body2">Epitech campus</Typography>
@@ -298,7 +300,7 @@ const styles = {
     my: 5,
   },
   avatar: {
-    width: '40%',
+    width: '70%',
     height: 'auto',
   },
 }

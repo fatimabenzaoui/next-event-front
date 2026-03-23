@@ -9,6 +9,21 @@ import 'leaflet-routing-machine';
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import type { School } from '../models/School';
 import { findAllSchools } from '../services/SchoolService';
+import L from 'leaflet';
+
+// corrige le chemin des icônes
+const defaultIcon = L.icon({
+  iconRetinaUrl: '/next-event-front/img/marker-icon-2x.png',
+  iconUrl: '/next-event-front/img/marker-icon.png',
+  shadowUrl: '/next-event-front/img/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+// définit l'icône par défaut
+L.Marker.prototype.options.icon = defaultIcon;
 
 const SchoolMap = () => {
 

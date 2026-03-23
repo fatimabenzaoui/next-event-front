@@ -1,10 +1,23 @@
 import { Box, Typography, Grid } from '@mui/material';
-import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 import backgroundImage from '../assets/next-event.png';
 import { useEffect, useState } from 'react';
 import { getEventsCount } from '../services/EventService';
 import { getSchoolsCount } from '../services/SchoolService';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: (theme.vars ?? theme).palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
+}));
+
 
 function Dashboard() {
   const [eventsCount, setEventsCount] = useState<number>(0);
@@ -36,10 +49,9 @@ function Dashboard() {
 
   return (
     <Box sx={dashboardContainer}>
-      <Grid sx={cardsContainer}>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} justifyContent="center">
         {/* EVENTS */}
-        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
-          <Card sx={cardStyle}>
+        <Item sx={{ width: { xs: '100%', sm: '50%', md: '30%'}, p: 1 }}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
                 Events overview
@@ -56,12 +68,10 @@ function Dashboard() {
                 </Typography>
               </Box>
             </Box>
-          </Card>
-        {/* </Grid> */}
+        </Item>
 
         {/* USERS */}
-        {/* <Grid item xs={12} sm={6} md={4} lg={2} sx={{ flexGrow: 1, display: "flex" }}> */}
-          <Card sx={cardStyle}>
+        <Item sx={{ width: { xs: '100%', sm: '50%', md: '30%' }, p: 1 }}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
                 Users overview
@@ -79,12 +89,10 @@ function Dashboard() {
                 </Typography>
               </Box>
             </Box>
-          </Card>
-        {/* </Grid> */}
+        </Item>
 
         {/* SCHOOLS */}
-        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
-          <Card sx={cardStyle}>
+        <Item sx={{ width: { xs: '100%', sm: '50%', md: '30%' }, p: 1 }}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
                 Schools overview
@@ -101,12 +109,10 @@ function Dashboard() {
                 </Typography>
               </Box>
             </Box>
-          </Card>
-        {/* </Grid> */}
+        </Item>
 
         {/* ASSOCIATIONS */}
-        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
-          <Card sx={cardStyle}>
+        <Item sx={{ width: { xs: '100%', sm: '50%', md: '30%' }, p: 1 }}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
                 Associations overview
@@ -124,12 +130,10 @@ function Dashboard() {
                 </Typography>
               </Box>
             </Box>
-          </Card>
-        {/* </Grid> */}
+        </Item>
 
         {/* ETUDIANTS */}
-        {/* <Grid item xs={12} sm={6} md={4} lg={2.4} sx={{ flexGrow: 1, display: "flex" }}> */}
-          <Card sx={cardStyle}>
+        <Item sx={{ width: { xs: '100%', sm: '50%', md: '30%' }, p: 1 }}>
             <Box pt={3} px={3}>
               <Typography variant="h6" fontWeight="medium">
                 Students overview
@@ -147,10 +151,10 @@ function Dashboard() {
                 </Typography>
               </Box>
             </Box>
-          </Card>
-        {/* </Grid> */}
+        </Item>
       </Grid>
     </Box>
+
   );
 }
 
@@ -165,18 +169,4 @@ const dashboardContainer = {
   backgroundRepeat: 'no-repeat',
   minHeight: '100vh',
   padding: 2,
-};
-
-const cardsContainer = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  gap: 2,
-  width: '100%',
-};
-
-const cardStyle = {
-  height: "100%",
-  flex: 1,
-  flexDirection: "column",
-  minWidth: 0,
 };

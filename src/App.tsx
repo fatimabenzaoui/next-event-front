@@ -36,7 +36,7 @@ function App() {
       <ProSidebarProvider>
         <EventProvider>
           <CssBaseline />
-          <BrowserRouter>
+          <BrowserRouter basename="/next-event-front">
             <AppContent />
           </BrowserRouter>
         </EventProvider>
