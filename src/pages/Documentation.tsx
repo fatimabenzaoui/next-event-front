@@ -124,6 +124,16 @@ function Documentation() {
           <Typography>
             <Link
               sx={link}
+              href="https://github.com/EpitechMscProPromo2026/T-ESP-800-project-71760-LYO_NextEvent"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+              aria-label="Se rendre sur GitHub (ouvre dans un nouvel onglet)"
+            >
+              Se rendre sur GitHub (Epitech)<OpenInNewIcon fontSize="small" />
+            </Link><br/>
+            <Link
+              sx={link}
               href="https://github.com/Yvan4001/esp_epitech_new_version"
               target="_blank"
               rel="noopener noreferrer"
@@ -134,13 +144,23 @@ function Documentation() {
             </Link><br/>
             <Link
               sx={link}
-              href="https://github.com/EpitechMscProPromo2026/T-ESP-800-project-71760-LYO_NextEvent"
+              href="https://github.com/fatimabenzaoui/next-event-back"
               target="_blank"
               rel="noopener noreferrer"
               underline="hover"
               aria-label="Se rendre sur GitHub (ouvre dans un nouvel onglet)"
             >
-              Se rendre sur GitHub (Epitech)<OpenInNewIcon fontSize="small" />
+              Se rendre sur GitHub (Fatima - BACK)<OpenInNewIcon fontSize="small" />
+            </Link><br/>
+            <Link
+              sx={link}
+              href="https://github.com/fatimabenzaoui/next-event-front"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+              aria-label="Se rendre sur GitHub (ouvre dans un nouvel onglet)"
+            >
+              Se rendre sur GitHub (Fatima - FRONT)<OpenInNewIcon fontSize="small" />
             </Link>
           </Typography>
         </AccordionDetails>
@@ -444,20 +464,73 @@ L.Marker.prototype.options.icon = defaultIcon;<br/><br/>
 AUTRES IMAGES<br/>
 - déplacer les images dans le dossier public et modifier les src des images : src="/next-event-front/notion.png"<br/>
 - ou s'assurer que celles-ci sont importées dans le code pour que Vite les copie dans dist/ :<br/>
-import notionIcon from '../assets/notion.png'; et dans les src des images : src={'{'}notionIcon{'}'}<br/><br/>
+import notionIcon from '../assets/notion.png'; et dans les src des images : src={'{'}notionIcon{'}'}<br/><br/><br/>
+
+
 
 # BACK<br/>
-Django (settings.py)<br/>
-CORS_ALLOWED_ORIGINS = [<br/>
-    "https://fatimabenzaoui.github.io",<br/>
-]<br/>
+- <a href="https://deploydjangopythonanywhere.vercel.app/" target="_blank">Guide d'hébergement Django & MySQL</a><br/>
+- <a href="https://www.pythonanywhere.com/" target="_blank">Créer un compte sur pythonanywhere.com</a><br/><br/>
+
+- Dans le Dashboard / Files / Cliquer sur Open Bash console here :<br/>
+- cloner son dépôt : git clone https://github.com/next-event-back<br/>
+- Créer et activer un environnement virtuel Python 3.13 : mkvirtualenv --python=/usr/bin/python3.13 venv<br/>
+- Installer les packages nécessaires depuis requirements.txt : cd next-event-back puis pip install -r requirements.txt<br/><br/>
+
+- Dans le dashboard / Web / Cliquer sur Add a new app<br/>
+- Cliquer sur Next<br/>
+- Sélectionner Manual configuration<br/>
+- Sélectionner Python 3.13<br/>
+- Cliquer sur Next<br/><br/>
+
+- Configurer les chemins comme suit :<br/>
+- Renseigner le chemin du Source code : /home/fatimabenzaoui/next-event-back<br/>
+- Renseigner le chemin du Virtualenv : /home/fatimabenzaoui/.virtualenvs/venv/<br/><br/>
+
+- Modifier le fichier WSGI :<br/>
+import os<br/>
+import sys<br/><br/>
+
+path = '/home/fatimabenzaoui/next-event-back'<br/>
+if path not in sys.path:<br/>
+  sys.path.append(path)<br/>
+os.environ['DJANGO_SETTINGS_MODULE'] = 'next-event-back.backend.settings'<br/>
+from django.core.wsgi import get_wsgi_application<br/>
+application = get_wsgi_application()<br/><br/>
+
+- Configurer les fichiers static :<br/>
+- Renseigner l'URL : /static/ et son chemin : /home/fatimabenzaoui/static<br/>
+- Renseigner l'URL : /media/ et son chemin : 	/home/fatimabenzaoui/next-event-back/media<br/><br/>
+
+- Activer https<br/>
+- Cliquer sur Reload<br/><br/>
 
 
+- Dans le dashboard / Cliquer sur l'onglet Databases / Créer une base de données<br/>
+Modifier settings.py :<br/>
+DATABASES = {'{'}<br/>
+  'default': {'{'}<br/>
+    'ENGINE': 'django.db.backends.mysql',<br/>
+    'NAME': 'db_name',<br/>
+    'USER': 'username',<br/>
+    'PASSWORD': 'password',<br/>
+    'HOST': 'host',<br/>
+    'PORT': '3306',<br/>
+  {'}'}<br/>
+{'}'}<br/><br/>
 
+- Appliquer les migrations dans la console Bash :<br/>
+python manage.py makemigrations<br/>
+python manage.py migrate app<br/><br/>
 
+- Récupérer les fichiers static : python manage.py collectstatic puis cliquer sur Yes<br/><br/>
 
+- Modifier settings.py :<br/>
+DEBUG = False<br/>
+ALLOWED_HOSTS = ['fatimabenzaoui.pythonanywhere.com']<br/>
+CORS_ALLOWED_ORIGINS = ["https://fatimabenzaoui.github.io"]<br/><br/>
 
-
+- Dans le dashboard / Web / Cliquer sur Reload
 </p>       
           </Typography>
         </AccordionDetails>
