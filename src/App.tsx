@@ -13,15 +13,25 @@ import { BrowserRouter, useLocation } from 'react-router-dom';
 import AppRoutes from './router/routes';
 import { ToastContainer } from 'react-toastify';
 import { EventProvider } from './pages/events/EventContext';
+import { AuthProvider } from './context/AuthContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '';
 
 // Composant interne pour utiliser useLocation
 function AppContent() {
   const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
+  if (isAuthPage) {
+    return <AppRoutes />;
+  }
+
   return (
     <>
       <TopNav />
       <Box sx={styles.container}>
-        {location.pathname === '/' || location.pathname === '/profile' ? <SideNavHome /> : <SideNav />}
+        {location.pathname === '/' ? <SideNavHome /> : <SideNav />}
         <Box component={'main'} sx={styles.mainSection}>
           <AppRoutes />
         </Box>
@@ -33,14 +43,18 @@ function AppContent() {
 function App() {
   return (
     <React.Fragment>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <ProSidebarProvider>
-        <EventProvider>
-          <CssBaseline />
-          <BrowserRouter basename="/next-event-front">
-            <AppContent />
-          </BrowserRouter>
-        </EventProvider>
+        <AuthProvider>
+          <EventProvider>
+            <CssBaseline />
+            <BrowserRouter basename="/next-event-front">
+              <AppContent />
+            </BrowserRouter>
+          </EventProvider>
+        </AuthProvider>
       </ProSidebarProvider>
+      </GoogleOAuthProvider>
       <ToastContainer />
     </React.Fragment>
   );

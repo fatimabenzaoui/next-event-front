@@ -49,7 +49,6 @@ const Cities = () => {
     try {
       const fetchedCities = await findAllCities();
       setCities(fetchedCities);
-      toast.success("Cities fetched successfully", { toastId: 'fetch-cities-success' });
     } catch (error) {
       console.error("Failed to fetch cities:", error);
       toast.error("Failed to fetch cities", { toastId: 'fetch-cities-error' });
@@ -150,7 +149,7 @@ const Cities = () => {
   return (
     <Box sx={{ p: 1 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-        <Typography variant="h6">Categories List</Typography>
+        <Typography variant="h6">Cities List</Typography>
         <IconButton aria-label="add" onClick={() => openAddEditPopup()} color="primary">
           <AddIcon />
         </IconButton>

@@ -49,7 +49,6 @@ const Cities = () => {
     try {
       const fetchedCities = await findAllCities();
       setCities(fetchedCities);
-      toast.success("Cities fetched successfully", { toastId: 'fetch-cities-success' });
     } catch (error) {
       console.error("Failed to fetch cities:", error);
       toast.error("Failed to fetch cities", { toastId: 'fetch-cities-error' });

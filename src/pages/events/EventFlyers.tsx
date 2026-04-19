@@ -61,7 +61,6 @@ const EventFlyers = () => {
     try {
       const fetchedEventFlyers = await findAllEventFlyers();
       setEventFlyers(fetchedEventFlyers);
-      toast.success("Flyers fetched successfully", { toastId: 'fetch-flyers-success' });
     } catch (error) {
       console.error("Failed to fetch flyers:", error);
       toast.error("Failed to fetch flyers", { toastId: 'fetch-flyers-error' });

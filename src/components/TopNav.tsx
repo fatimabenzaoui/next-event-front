@@ -1,16 +1,23 @@
-import { AppBar, Toolbar, IconButton, Box, Badge } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useProSidebar } from 'react-pro-sidebar';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function TopNav() {
 
-  const { collapseSidebar, toggleSidebar, broken } = useProSidebar()
+  const { collapseSidebar, toggleSidebar, broken } = useProSidebar();
+  const { logout, user } = useAuth(); // Récupère l'utilisateur
+  const navigate = useNavigate();
+
+  // Vérifie si l'utilisateur a le rôle 'association'
+  const isAssociation = user?.role === 'association';
 
   return (
   <AppBar position="sticky" sx={styles.topBar}>
@@ -29,23 +36,47 @@ export default function TopNav() {
           <HomeIcon />
         </IconButton>
 
-      <IconButton title='Home' color='secondary' component={NavLink} to="/profile">
-        <AccountCircleIcon />
-      </IconButton>
+      {/* {user && (
+        <IconButton title='Home' color='secondary' component={NavLink} to="/profile">
+          <AccountCircleIcon />
+        </IconButton>
+      )} */}
 
-      <IconButton title='Notifications' color="secondary">
-        <Badge badgeContent={4} color="error">
-          <NotificationsIcon />
-        </Badge>
-      </IconButton>
+      {/* Affichage conditionnel de l'icône Settings */}
+      {isAssociation && (
+        <IconButton title='Settings' color='secondary' component={NavLink} to="/dashboard">
+          <SettingsIcon />
+        </IconButton>
+      )}
 
-      <IconButton title='Settings' color='secondary' component={NavLink} to="/dashboard">
-        <SettingsIcon />
-      </IconButton>
+      {!user && (
+        <IconButton title="S'inscrire" color='secondary' onClick={() => { navigate('/register'); }}>
+          <AppRegistrationIcon />
+        </IconButton>
+      )}
 
-      <IconButton title='Sign Out' color='secondary'>
-        <LogoutIcon />
-      </IconButton>
+      {/* Affichage conditionnel du bouton Login ou Logout */}
+        {user ? (
+          <IconButton
+            title='Se déconnecter'
+            color='secondary'
+            onClick={() => {
+              logout();
+              navigate('/login');
+            }}
+          >
+            <LogoutIcon />
+          </IconButton>
+        ) : (
+          <IconButton
+            title='Se connecter'
+            color='secondary'
+            component={NavLink}
+            to="/login"
+          >
+            <LoginIcon />
+          </IconButton>
+        )}
     </Toolbar>
   </AppBar>)
 }

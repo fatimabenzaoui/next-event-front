@@ -48,7 +48,7 @@ const styles = {
     },
   },
   tab: {
-    width: '100%',
+    width: '25%',
   },
 }
 

@@ -4,15 +4,20 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import SourceOutlinedIcon from '@mui/icons-material/SourceOutlined';
 import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import InterestsOutlinedIcon from '@mui/icons-material/InterestsOutlined';
 import { Link, useLocation } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.png';
+import { useAuth } from '../context/AuthContext';
 
 export default function SideNav() {
 
-  const { collapsed } = useProSidebar()
-  const location = useLocation()
+  const { collapsed } = useProSidebar();
+  const location = useLocation();
+  const { user } = useAuth();
 
   return (
     <Sidebar
@@ -25,9 +30,21 @@ export default function SideNav() {
     >
 
       <Box sx={styles.avatarContainer}>
-        <Avatar sx={styles.avatar} alt='' src={defaultAvatar} />
-        { !collapsed ? <Typography variant="body2" sx={styles.name}>Fatima Benzaoui</Typography> : null }
-        { !collapsed ? <Typography variant="overline" sx={styles.role}>Administrator</Typography> : null }
+        <Avatar
+          sx={styles.avatar}
+          alt={user?.first_name || ''}
+          src={defaultAvatar}
+        />
+        {!collapsed && user ? (
+          <>
+            <Typography variant="body2" sx={styles.name}>
+              {user.first_name} {user.last_name}
+            </Typography>
+            <Typography variant="overline" sx={styles.role}>
+              ROLE : {user.role}
+            </Typography>
+          </>
+        ) : null}
       </Box>
 
       <Menu
@@ -60,33 +77,40 @@ export default function SideNav() {
         >
           <Typography variant="body2">Events</Typography>
         </MenuItem>
-        <MenuItem 
-          active={location.pathname === '/users'} 
-          component={<Link to="/users"/>} 
+        <MenuItem
+          active={location.pathname === '/users'}
+          component={<Link to="/users"/>}
           icon={<GroupOutlinedIcon />}
         >
           <Typography variant="body2">Users</Typography>
         </MenuItem>
-        <MenuItem 
-          active={location.pathname === '/schools'} 
-          component={<Link to="/schools"/>} 
+        <MenuItem
+          active={location.pathname === '/schools'}
+          component={<Link to="/schools"/>}
           icon={<SchoolOutlinedIcon />}
         >
           <Typography variant="body2">Schools</Typography>
         </MenuItem>
-        <MenuItem 
-          active={location.pathname === '/associations'} 
-          component={<Link to="/associations"/>} 
-          icon={<GroupOutlinedIcon />}
+        <MenuItem
+          active={location.pathname === '/associations'}
+          component={<Link to="/associations"/>}
+          icon={<PeopleOutlinedIcon />}
         >
           <Typography variant="body2">Associations</Typography>
         </MenuItem>
-        <MenuItem 
-          active={location.pathname === '/students'} 
-          component={<Link to="/students"/>} 
-          icon={<GroupOutlinedIcon />}
+        <MenuItem
+          active={location.pathname === '/students'}
+          component={<Link to="/students"/>}
+          icon={<PersonOutlinedIcon />}
         >
           <Typography variant="body2">Students</Typography>
+        </MenuItem>
+        <MenuItem
+          active={location.pathname === '/hobbies'}
+          component={<Link to="/hobbies"/>}
+          icon={<InterestsOutlinedIcon />}
+        >
+          <Typography variant="body2">Hobbies</Typography>
         </MenuItem>
         <MenuItem 
           active={location.pathname === '/documentation'} 

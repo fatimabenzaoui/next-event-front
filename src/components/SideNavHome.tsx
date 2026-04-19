@@ -169,7 +169,7 @@ export default function SideNav() {
               <CircularProgress size={16} />
             </Box>
           ) : (
-            cities.map((city) => (
+              Array.isArray(cities) && cities.map((city) => (
               <MenuItem
                 key={city.id}
                 onClick={() => handleCityClick(city.id)}
@@ -197,7 +197,7 @@ export default function SideNav() {
               <CircularProgress size={16} />
             </Box>
           ) : (
-            schools.map((school) => (
+            Array.isArray(schools) && schools.map((school) => (
               <MenuItem
                 key={school.id}
                 onClick={() => handleSchoolClick(school.id)}
@@ -223,7 +223,7 @@ export default function SideNav() {
               <CircularProgress size={16} />
             </Box>
           ) : (
-            associations.map((association) => (
+            Array.isArray(associations) && associations.map((association) => (
               <MenuItem
                 key={association.id}
                 onClick={() => handleAssociationClick(association.id)}
@@ -251,7 +251,7 @@ export default function SideNav() {
               <CircularProgress size={16} />
             </Box>
           ) : (
-            categories.map((category) => (
+            Array.isArray(categories) && categories.map((category) => (
               <MenuItem
                 key={category.id}
                 onClick={() => handleCategoryClick(category.id)}

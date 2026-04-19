@@ -123,7 +123,6 @@ const Events = () => {
     try {
       const fetchedEvents = await findAllEvents();
       setEvents(fetchedEvents);
-      toast.success("Events fetched successfully", {toastId: 'fetch-events-success'});
     } catch (error) {
       console.error("Failed to fetch event:", error);
       toast.error("Failed to fetch event", {toastId: 'fetch-events-error'});

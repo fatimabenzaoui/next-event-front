@@ -40,7 +40,6 @@ const EventMap = () => {
     try {
       const fetchedEvents = await findAllHomeEvents();
       setEvents(fetchedEvents);
-      toast.success("Events fetched successfully", {toastId: 'fetch-events-success'});
     } catch (error) {
       console.error("Failed to fetch event:", error);
       toast.error("Failed to fetch event", {toastId: 'fetch-events-error'});

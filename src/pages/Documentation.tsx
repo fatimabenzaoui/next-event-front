@@ -46,6 +46,8 @@ function Documentation() {
             - pip install pillow<br/>
             - pip install geopy<br/>
             - pip install django-filter<br/>
+            - pip install google-auth<br/>
+            - pip install google-api-python-client<br/>
             - pip install mysqlclient<br/><br/>
 
             - Créer un projet Django : django-admin startproject back .<br/>
@@ -56,6 +58,8 @@ function Documentation() {
 
             - Créer une ou des tables : python manage.py makemigrations<br/>
             - Appliquer la migration : python manage.py migrate<br/><br/>
+
+            - Exécuter les tests : python manage.py test<br/><br/>
 
             FRONT<br/>
             - Générer une application React avec Vite : npm create vite@latest<br/>
@@ -77,6 +81,7 @@ function Documentation() {
               - npm install react-chartjs-2<br/>
               - npm install framer-motion react-slick slick-carousel<br/>
               - npm install leaflet react-leaflet leaflet-routing-machine<br/>
+              - npm install @react-oauth/google<br/>
               - npm install gh-pages
           </Typography>
         </AccordionDetails>
@@ -161,6 +166,16 @@ function Documentation() {
               aria-label="Se rendre sur GitHub (ouvre dans un nouvel onglet)"
             >
               Se rendre sur GitHub (Fatima - FRONT)<OpenInNewIcon fontSize="small" />
+            </Link><br/>
+            <Link
+              sx={link}
+              href="https://fatimabenzaoui.github.io/next-event-front/"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+              aria-label="Se rendre sur GitHub (ouvre dans un nouvel onglet)"
+            >
+              Voir la version déployée 1<OpenInNewIcon fontSize="small" />
             </Link>
           </Typography>
         </AccordionDetails>
@@ -377,7 +392,13 @@ function Documentation() {
 
             USERS API<br/>
             # CRUD :<br/>
-            GET - POST - PUT - PATCH - DELETE : /api/users/ - /api/users/&lt;id&gt;/<br/><br/><br/>
+            GET - POST - PUT - PATCH - DELETE : /api/auth/users/ - /api/auth/users/&lt;id&gt;/<br/><br/>
+            
+            # REGISTER :<br/>
+            POST : /api/auth/register/<br/><br/>
+
+            # LOGIN :<br/>
+            POST : /api/auth/login/<br/><br/><br/>
 
             SCHOOLS API<br/>
             # CRUD :<br/>
@@ -413,7 +434,6 @@ function Documentation() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-<p>
 # FRONT<br/>
 Installer gh-pages : npm i gh-pages<br/>
 Modifier le package.json :<br/>
@@ -530,8 +550,7 @@ DEBUG = False<br/>
 ALLOWED_HOSTS = ['fatimabenzaoui.pythonanywhere.com']<br/>
 CORS_ALLOWED_ORIGINS = ["https://fatimabenzaoui.github.io"]<br/><br/>
 
-- Dans le dashboard / Web / Cliquer sur Reload
-</p>       
+- Dans le dashboard / Web / Cliquer sur Reload     
           </Typography>
         </AccordionDetails>
       </Accordion>

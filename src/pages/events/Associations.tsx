@@ -48,7 +48,6 @@ const Associations = () => {
     try {
       const fetchedAssociations = await findAllAssociations();
       setAssociations(fetchedAssociations);
-      toast.success("Associations fetched successfully", { toastId: 'fetch-associations-success' });
     } catch (error) {
       console.error("Failed to fetch associations:", error);
       toast.error("Failed to fetch associations", { toastId: 'fetch-associations-error' });

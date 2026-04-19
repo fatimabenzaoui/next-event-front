@@ -27,9 +27,10 @@ function Dashboard() {
     const fetchEventsCount = async () => {
       try {
         const count = await getEventsCount();
-        setEventsCount(count);
+        setEventsCount(typeof count === 'number' ? count : 0);
       } catch (error) {
         console.error("Failed to fetch events count:", error);
+        setEventsCount(0);
       }
     };
     fetchEventsCount();
@@ -39,9 +40,10 @@ function Dashboard() {
     const fetchSchoolsCount = async () => {
       try {
         const count = await getSchoolsCount();
-        setSchoolsCount(count);
+        setSchoolsCount(typeof count === 'number' ? count : 0);
       } catch (error) {
         console.error("Failed to fetch schools count:", error);
+        setSchoolsCount(0);
       }
     };
     fetchSchoolsCount();

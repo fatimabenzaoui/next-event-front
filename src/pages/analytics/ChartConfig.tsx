@@ -55,12 +55,15 @@ export const getMainChartData = async () => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const counts = new Array(12).fill(0);
 
-  data.forEach(item => {
-    const monthIndex = months.indexOf(item.month);
-    if (monthIndex !== -1) {
-      counts[monthIndex] = item.count;
-    }
-  });
+  // Vérifier que data est bien un tableau
+  if (Array.isArray(data)) {
+    data.forEach(item => {
+      const monthIndex = months.indexOf(item.month);
+      if (monthIndex !== -1) {
+        counts[monthIndex] = item.count;
+      }
+    });
+  }
 
   return {
     labels: months,

@@ -51,7 +51,6 @@ const EventAddresses = () => {
     try {
       const fetchedEventAddresses = await findAllEventAddresses();
       setEventAddresses(fetchedEventAddresses);
-      toast.success("Addresses fetched successfully", { toastId: 'fetch-addresses-success' });
     } catch (error) {
       console.error("Failed to fetch addresses:", error);
       toast.error("Failed to fetch addresses", { toastId: 'fetch-addresses-error' });

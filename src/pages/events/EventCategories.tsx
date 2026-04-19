@@ -48,7 +48,6 @@ const EventCategories = () => {
     try {
       const fetchedEventFlyers = await findAllEventCategories();
       setEventCategories(fetchedEventFlyers);
-      toast.success("Categories fetched successfully", { toastId: 'fetch-flyers-success' });
     } catch (error) {
       console.error("Failed to fetch categories:", error);
       toast.error("Failed to fetch categories", { toastId: 'fetch-flyers-error' });

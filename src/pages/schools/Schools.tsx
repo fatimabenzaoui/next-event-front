@@ -66,7 +66,6 @@ function Schools() {
     try {
       const fetchedSchools = await findAllSchools();
       setSchools(fetchedSchools);
-      toast.success("Schools fetched successfully", { toastId: 'fetch-schools-success' });
     } catch (error) {
       console.error("Failed to fetch schools:", error);
       toast.error("Failed to fetch schools", { toastId: 'fetch-schools-error' });
